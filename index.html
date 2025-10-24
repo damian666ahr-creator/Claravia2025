@@ -2,66 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Claravía</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR de mi empresa</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4fdf9;
-      color: #333;
+      font-family: Arial, sans-serif;
       text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
     }
-    header {
-      background: url('https://images.unsplash.com/photo-1581090700227-1e7e8e1f6b1b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      padding: 6em 2em;
-      color: white;
+    h1 {
+      color: #333;
     }
-    header h1 {
-      font-size: 3em;
-      margin: 0;
-    }
-    header p {
-      font-size: 1.4em;
-      margin-top: 0.5em;
-    }
-    section {
-      padding: 2em;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 0.8em 1.5em;
-      background-color: #2e7d32;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-    footer {
-      background-color: #e0f2f1;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #555;
+    #qrcode {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>Escanea el QR para visitar nuestra web</h1>
+  <canvas id="qrcode"></canvas>
 
-  <header>
-    <h1>Claravía</h1>
-    <p>Respiramos esperanza. Purificamos futuro.</p>
-  </header>
-
-  <section>
-    <h2>¿Qué es Claravía?</h2>
-    <p>Claravía es una solución sostenible diseñada para comunidades que merecen respirar aire limpio y vivir con dignidad. Nuestro purificador ecológico transforma espacios y fortalece vínculos.</p>
-    <a href="https://wa.me/57TU_NUMERO" class="btn" target="_blank">Contáctanos por WhatsApp</a>
-  </section>
-
-  <footer>
-    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
-  </footer>
-
+  <script>
+    const urlEmpresa = "https://damian666ahr-creator.github.io/Claravia/";
+    QRCode.toCanvas(document.getElementById('qrcode'), urlEmpresa, function (error) {
+      if (error) {
+        console.error("Error al generar el QR:", error);
+      } else {
+        console.log("QR generado correctamente!");
+      }
+    });
+  </script>
 </body>
 </html>
