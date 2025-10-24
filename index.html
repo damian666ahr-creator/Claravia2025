@@ -2,36 +2,83 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>QR de mi empresa</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <title>Claravía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background-color: #f4f4f4;
-    }
-    h1 {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf7;
       color: #333;
+      line-height: 1.6;
     }
-    #qrcode {
-      margin-top: 20px;
+    header {
+      background: linear-gradient(to right, #2e7d32, #66bb6a);
+      color: white;
+      padding: 3em 1.5em;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    section {
+      padding: 2em 1.5em;
+      text-align: center;
+    }
+    section h2 {
+      color: #2e7d32;
+      margin-bottom: 1em;
+    }
+    section p {
+      font-size: 1.1em;
+      margin-bottom: 1.5em;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #2e7d32;
+      color: white;
+      padding: 0.8em 1.5em;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #1b5e20;
+    }
+    footer {
+      background-color: #e0f2f1;
+      text-align: center;
+      padding: 1em;
+      font-size: 0.9em;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Escanea el QR para visitar nuestra web</h1>
-  <canvas id="qrcode"></canvas>
 
-  <script>
-    const urlEmpresa = "https://damian666ahr-creator.github.io/Claravia/";
-    QRCode.toCanvas(document.getElementById('qrcode'), urlEmpresa, function (error) {
-      if (error) {
-        console.error("Error al generar el QR:", error);
-      } else {
-        console.log("QR generado correctamente!");
-      }
-    });
-  </script>
+  <header>
+    <h1>Claravía</h1>
+    <p>Respiramos esperanza. Purificamos futuro.</p>
+  </header>
+
+  <section>
+    <h2>¿Qué es Claravía?</h2>
+    <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
+    <a href="https://wa.me/57TU_NUMERO" class="btn" target="_blank">Contáctanos por WhatsApp</a>
+  </section>
+
+  <footer>
+    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
+  </footer>
+
 </body>
 </html>
