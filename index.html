@@ -5,8 +5,18 @@
   <title>QR de mi empresa</title>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
-    body { font-family: Arial; text-align: center; margin-top: 50px; }
-    #qrcode { margin-top: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -14,10 +24,13 @@
   <canvas id="qrcode"></canvas>
 
   <script>
-    const urlEmpresa = "https://damian666ahr.github.io/paginaQR"; // Cambia TU_USUARIO por tu usuario de GitHub
+    const urlEmpresa = "https://damian666ahr-creator.github.io/Claravia/";
     QRCode.toCanvas(document.getElementById('qrcode'), urlEmpresa, function (error) {
-      if (error) console.error(error);
-      console.log('QR generado correctamente!');
+      if (error) {
+        console.error("Error al generar el QR:", error);
+      } else {
+        console.log("QR generado correctamente!");
+      }
     });
   </script>
 </body>
