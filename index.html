@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Claravía</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -17,17 +18,19 @@
       line-height: 1.6;
     }
     header {
-      background: linear-gradient(to right, #2e7d32, #66bb6a);
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
-      padding: 3em 1.5em;
+      padding: 4em 1.5em;
       text-align: center;
     }
     header h1 {
-      font-size: 2.5em;
+      font-size: 2.8em;
       margin-bottom: 0.5em;
+      text-shadow: 1px 1px 3px #000;
     }
     header p {
-      font-size: 1.2em;
+      font-size: 1.3em;
+      text-shadow: 1px 1px 2px #000;
     }
     section {
       padding: 2em 1.5em;
@@ -54,12 +57,17 @@
     .btn:hover {
       background-color: #1b5e20;
     }
+    #qrcode {
+      margin: 2em auto;
+      max-width: 200px;
+    }
     footer {
-      background-color: #e0f2f1;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
       text-align: center;
-      padding: 1em;
+      padding: 2em 1.5em;
       font-size: 0.9em;
-      color: #555;
+      text-shadow: 1px 1px 2px #000;
     }
   </style>
 </head>
@@ -76,9 +84,26 @@
     <a href="https://wa.me/57TU_NUMERO" class="btn" target="_blank">Contáctanos por WhatsApp</a>
   </section>
 
+  <section>
+    <h2>Escanea para compartir</h2>
+    <canvas id="qrcode"></canvas>
+    <p>Este código te lleva directamente a nuestra página web. ¡Compártelo con tu comunidad!</p>
+  </section>
+
   <footer>
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
+
+  <script>
+    const urlEmpresa = "https://damian666ahr-creator.github.io/Claravia2025/";
+    QRCode.toCanvas(document.getElementById('qrcode'), urlEmpresa, function (error) {
+      if (error) {
+        console.error("Error al generar el QR:", error);
+      } else {
+        console.log("QR generado correctamente!");
+      }
+    });
+  </script>
 
 </body>
 </html>
