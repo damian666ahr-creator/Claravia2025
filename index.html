@@ -21,7 +21,7 @@
       line-height: 1.6;
     }
 
-    /* === MENÚ LATERAL ORIGINAL TIPO CORTINA === */
+    /* === MENÚ LATERAL TIPO CORTINA === */
     .sidebar {
       position: fixed;
       top: 0;
@@ -50,29 +50,31 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* Botón del menú (☰) ajustado para no tapar */
+    /* === Flecha del menú === */
     .toggle-arrow {
       position: fixed;
       top: 50%;
-      left: -5px; /* un poco escondido para no tapar el texto del menú */
+      left: -8px; /* un poco escondida al borde */
       transform: translateY(-50%);
-      font-size: 1.6em;
+      font-size: 1.4em;
       color: white;
       background-color: #2e7d32;
-      padding: 0.3em 0.5em;
+      padding: 0.4em 0.5em;
       border-radius: 0 50% 50% 0;
       cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      transition: left 0.3s ease;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
       z-index: 1100;
-    }
-
-    .sidebar.show + .toggle-arrow {
-      left: 160px; /* se corre a la derecha cuando se abre el menú */
     }
 
     .toggle-arrow:hover {
       background-color: #43a047;
+      box-shadow: 0 0 10px #43a047;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .sidebar.show + .toggle-arrow {
+      left: 160px; /* se mueve con el menú abierto */
     }
 
     header {
@@ -137,7 +139,7 @@
       background-color: #128C7E;
     }
 
-    /* === CHATBOT (OSO POLAR) === */
+    /* === CHATBOT OSO POLAR === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -207,8 +209,8 @@
     </nav>
   </div>
 
-  <!-- Botón del menú -->
-  <div class="toggle-arrow" id="menuArrow" onclick="toggleSidebar()">☰</div>
+  <!-- Flecha del menú -->
+  <div class="toggle-arrow" id="menuArrow" onclick="toggleSidebar()">➤</div>
 
   <!-- Encabezado -->
   <header id="inicio">
@@ -251,26 +253,22 @@
 
   <script>
     let vozEnCurso = null;
+    let flecha = document.getElementById('menuArrow');
+    let abierto = false;
 
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
-      const arrow = document.getElementById('menuArrow');
       sidebar.classList.toggle('show');
-
-      if (sidebar.classList.contains('show')) {
-        arrow.style.left = '160px';
-      } else {
-        arrow.style.left = '-5px';
-      }
+      abierto = !abierto;
+      flecha.textContent = abierto ? '◀' : '➤'; // cambia dirección de flecha
+      flecha.style.left = abierto ? '160px' : '-8px';
     }
 
     function hablarClari() {
       const dialogo = document.getElementById('dialogo');
       const mensaje = document.getElementById('mensajeClari').textContent;
-
       dialogo.style.display = 'block';
       speechSynthesis.cancel();
-
       vozEnCurso = new SpeechSynthesisUtterance(mensaje);
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
@@ -283,8 +281,7 @@
     }
 
     function cerrarDialogo() {
-      const dialogo = document.getElementById('dialogo');
-      dialogo.style.display = 'none';
+      document.getElementById('dialogo').style.display = 'none';
       speechSynthesis.cancel();
     }
   </script>
