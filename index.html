@@ -80,13 +80,10 @@
       padding: 6em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
-    }
-
-    header img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      color: white;
+      text-shadow: 2px 2px 5px #000;
+      font-size: 3em;
+      font-weight: bold;
     }
 
     section {
@@ -137,7 +134,7 @@
       background-color: #128C7E;
     }
 
-    /* === CHATBOT OSO POLAR === */
+    /* === CHATBOT PINGO === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -215,7 +212,7 @@
 
   <!-- Encabezado -->
   <header id="inicio">
-    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
+    Bienvenidos
   </header>
 
   <section class="central" id="nosotros">
@@ -243,10 +240,10 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Chatbot Clari - Oso Polar -->
+  <!-- Chatbot Pingo -->
   <div class="dialogo" id="dialogo">
-    <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
-    <button class="boton-control" onclick="pausarClari()">⏸️ Detener voz</button>
+    <p id="mensajePingo">Hola, soy Pingo 🐧 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
+    <button class="boton-control" onclick="pausarPingo()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
@@ -254,8 +251,8 @@
   <img
     class="mascota"
     src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png"
-    alt="Clari Oso Polar"
-    onclick="hablarClari()"
+    alt="Pingo Chatbot"
+    onclick="hablarPingo()"
   />
 
   <script>
@@ -271,19 +268,25 @@
       flecha.style.left = abierto ? '160px' : '-5px';
     }
 
-    function hablarClari() {
+    function hablarPingo() {
       const dialogo = document.getElementById('dialogo');
-      const mensaje = document.getElementById('mensajeClari').textContent;
+      const mensaje = document.getElementById('mensajePingo').textContent;
       dialogo.style.display = 'block';
       speechSynthesis.cancel();
       vozEnCurso = new SpeechSynthesisUtterance(mensaje);
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
-      vozEnCurso.pitch = 1.1;
+      vozEnCurso.pitch = 1;
+      
+      // Selección de voz masculina elegante
+      const voces = speechSynthesis.getVoices();
+      const vozMasculina = voces.find(v => v.lang.startsWith('es') && v.name.toLowerCase().includes('male')) || voces[0];
+      vozEnCurso.voice = vozMasculina;
+
       speechSynthesis.speak(vozEnCurso);
     }
 
-    function pausarClari() {
+    function pausarPingo() {
       speechSynthesis.cancel();
     }
 
@@ -291,6 +294,11 @@
       document.getElementById('dialogo').style.display = 'none';
       speechSynthesis.cancel();
     }
+
+    // Para asegurar que las voces se carguen
+    window.speechSynthesis.onvoiceschanged = function() {
+      console.log("Voces cargadas");
+    };
   </script>
 
 </body>
