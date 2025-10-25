@@ -242,17 +242,42 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Chatbot Clari - Oso Polar -->
-  <div class="dialogo" id="dialogo">
+ <div class="dialogo" id="dialogo" style="display:none;">
     <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
     <button class="boton-control" onclick="pausarClari()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
-  <img class="mascota" 
-       src="https://i.postimg.cc/3J4d7y5D/polar-bear.png" 
-       alt="Clari Oso Polar" 
-       onclick="hablarClari()">
+  <img
+    class="mascota"
+    src="./images/33e84f7c-8d3f-4a6b-a8fb-cc6709a7f8ee.png"
+    alt="Clari Oso Polar"
+    onclick="hablarClari()"
+  />
+
+  <script>
+    let vozEnCurso = null;
+    function hablarClari() {
+      const dialogo = document.getElementById('dialogo');
+      const mensaje = document.getElementById('mensajeClari').textContent;
+      dialogo.style.display = 'block';
+      speechSynthesis.cancel();
+      vozEnCurso = new SpeechSynthesisUtterance(mensaje);
+      vozEnCurso.lang = "es-ES";
+      vozEnCurso.rate = 1;
+      vozEnCurso.pitch = 1.1;
+      speechSynthesis.speak(vozEnCurso);
+    }
+
+    function pausarClari() {
+      speechSynthesis.cancel();
+    }
+
+    function cerrarDialogo() {
+      document.getElementById('dialogo').style.display = 'none';
+      speechSynthesis.cancel();
+    }
+  </script>
 
   <script>
     let vozEnCurso = null;
