@@ -106,10 +106,7 @@
     }
 
     .respira {
-      background: linear-gradient(to bottom, #000000, #1a1a1a);
-      color: #e0e0e0;
-      font-size: 1.2em;
-      letter-spacing: 0.5px;
+      background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
     }
 
     footer {
@@ -208,9 +205,4 @@
       const mensaje = "Gracias por confiar en Claravía. Estamos aquí para ayudarte a respirar mejor y vivir con esperanza.";
       const voz = new SpeechSynthesisUtterance(mensaje);
       voz.lang = "es-ES";
-      speechSynthesis.speak(voz);
-    }
-  </script>
-
-</body>
-</html>
+      speechSynthesis.speak
