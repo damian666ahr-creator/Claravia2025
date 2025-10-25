@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Claravía</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
       box-sizing: border-box;
@@ -80,6 +80,14 @@
       padding: 6em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
+      color: white;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    header h1 {
+      margin-bottom: 1em;
+      font-size: 2em;
+      text-shadow: 2px 2px 5px #000;
     }
 
     header img {
@@ -137,7 +145,7 @@
       background-color: #128C7E;
     }
 
-    /* === CHATBOT OSO POLAR === */
+    /* === CHATBOT PINGÜINO === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -147,9 +155,6 @@
       z-index: 1000;
       animation: flotar 3s ease-in-out infinite;
       transition: transform 0.3s;
-      background: none;
-      border: none;
-      user-select: none;
     }
 
     .mascota:hover {
@@ -215,7 +220,8 @@
 
   <!-- Encabezado -->
   <header id="inicio">
-    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
+    <h1>¡Bienvenido a Claravía!</h1>
+    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía">
   </header>
 
   <section class="central" id="nosotros">
@@ -243,20 +249,17 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Chatbot Clari - Oso Polar -->
+  <!-- Chatbot Pingüino Clari -->
   <div class="dialogo" id="dialogo">
-    <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
+    <p id="mensajeClari">Hola, soy Pingüino Clari 🐧 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
     <button class="boton-control" onclick="pausarClari()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
-  <!-- Imagen del chatbot con fondo transparente -->
-  <img
-    class="mascota"
-    src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png"
-    alt="Clari Oso Polar"
-    onclick="hablarClari()"
-  />
+  <img class="mascota" 
+       src="URL_DE_TU_PINGUINO_SIN_FONDO.png" 
+       onclick="hablarClari()" 
+       style="background:none; border:none;">
 
   <script>
     let vozEnCurso = null;
@@ -276,10 +279,17 @@
       const mensaje = document.getElementById('mensajeClari').textContent;
       dialogo.style.display = 'block';
       speechSynthesis.cancel();
+
       vozEnCurso = new SpeechSynthesisUtterance(mensaje);
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
-      vozEnCurso.pitch = 1.1;
+      vozEnCurso.pitch = 1;
+      
+      // Seleccionar voz masculina elegante si existe
+      const voces = speechSynthesis.getVoices();
+      const vozElegante = voces.find(v => v.lang.includes("es") && v.name.toLowerCase().includes("male"));
+      if (vozElegante) vozEnCurso.voice = vozElegante;
+
       speechSynthesis.speak(vozEnCurso);
     }
 
