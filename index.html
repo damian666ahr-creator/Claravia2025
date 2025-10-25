@@ -71,8 +71,8 @@
     }
 
     header img {
-      width: 120px;
-      height: 120px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
@@ -125,19 +125,34 @@
       background-color: #128C7E;
     }
 
-    .voice-btn {
+    /* Muñequito flotante */
+    .mascota {
       position: fixed;
       bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 20px;
+      width: 100px;
+      z-index: 1000;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    .burbuja {
+      position: fixed;
+      bottom: 130px;
+      right: 130px;
       background-color: #2e7d32;
       color: white;
-      border: none;
-      padding: 0.8em 1.2em;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
+      padding: 1em;
+      border-radius: 10px;
+      font-size: 0.9em;
+      max-width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
     }
   </style>
 </head>
@@ -186,19 +201,14 @@
     <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
   </footer>
 
-  <button class="voice-btn" onclick="hablar()">🗣️ Escuchar mensaje</button>
+  <!-- Muñequito y burbuja de mensaje -->
+  <div class="burbuja">Gracias por confiar en Claravía 🌱</div>
+  <img class="mascota" src="https://i.postimg.cc/3x3QzSGq/mu-eco.png" alt="Mascota Claravía">
 
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('show');
-    }
-
-    function hablar() {
-      const mensaje = "Gracias por confiar en Claravía. Estamos aquí para ayudarte a respirar mejor y vivir con esperanza.";
-      const voz = new SpeechSynthesisUtterance(mensaje);
-      voz.lang = "es-ES";
-      speechSynthesis.speak(voz);
     }
   </script>
 
