@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Claravía</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
       box-sizing: border-box;
@@ -149,6 +149,7 @@
       transition: transform 0.3s;
       background: none;
       border: none;
+      user-select: none;
     }
 
     .mascota:hover {
@@ -214,7 +215,7 @@
 
   <!-- Encabezado -->
   <header id="inicio">
-    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía">
+    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
   </header>
 
   <section class="central" id="nosotros">
@@ -242,42 +243,20 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
- <div class="dialogo" id="dialogo" style="display:none;">
+  <!-- Chatbot Clari - Oso Polar -->
+  <div class="dialogo" id="dialogo">
     <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
     <button class="boton-control" onclick="pausarClari()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
+  <!-- Imagen del chatbot con fondo transparente -->
   <img
     class="mascota"
-    src="./images/33e84f7c-8d3f-4a6b-a8fb-cc6709a7f8ee.png"
+    src="33e84f7c-8d3f-4a6b-a8fb-cc6709a7f8ee.png"
     alt="Clari Oso Polar"
     onclick="hablarClari()"
   />
-
-  <script>
-    let vozEnCurso = null;
-    function hablarClari() {
-      const dialogo = document.getElementById('dialogo');
-      const mensaje = document.getElementById('mensajeClari').textContent;
-      dialogo.style.display = 'block';
-      speechSynthesis.cancel();
-      vozEnCurso = new SpeechSynthesisUtterance(mensaje);
-      vozEnCurso.lang = "es-ES";
-      vozEnCurso.rate = 1;
-      vozEnCurso.pitch = 1.1;
-      speechSynthesis.speak(vozEnCurso);
-    }
-
-    function pausarClari() {
-      speechSynthesis.cancel();
-    }
-
-    function cerrarDialogo() {
-      document.getElementById('dialogo').style.display = 'none';
-      speechSynthesis.cancel();
-    }
-  </script>
 
   <script>
     let vozEnCurso = null;
