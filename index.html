@@ -22,59 +22,61 @@
       overflow-x: hidden;
     }
 
-    /* === MENÚ LATERAL === */
+    /* === MENÚ LATERAL CENTRAL CON FLECHAS === */
     .sidebar {
       position: fixed;
-      top: 0;
+      top: 50%;
       left: 0;
+      transform: translate(-100%, -50%);
       width: 180px;
-      height: 100%;
-      background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
-      padding: 3em 1em;
-      transform: translateX(-100%);
+      background: rgba(0, 50, 0, 0.9);
+      padding: 2em 1em;
+      border-radius: 0 10px 10px 0;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.4);
       transition: transform 0.4s ease;
       z-index: 1000;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
     }
 
     .sidebar.show {
-      transform: translateX(0);
+      transform: translate(0, -50%);
     }
 
     .sidebar nav a {
       display: block;
-      color: white;
+      color: #fff;
       text-decoration: none;
       margin: 1.2em 0;
       font-weight: bold;
       font-size: 1em;
       text-shadow: 1px 1px 2px #000;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s;
     }
 
     .sidebar nav a:hover {
       color: #a5d6a7;
+      transform: translateX(5px);
     }
 
-    /* Botón del menú, semi-visible en la esquina superior izquierda */
+    /* Flecha para abrir/cerrar */
     .toggle-arrow {
       position: fixed;
-      top: 20px;
-      left: -10px; /* mitad oculta */
-      font-size: 1.6em;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 1.8em;
       color: white;
       background-color: #2e7d32;
-      padding: 0.3em 0.5em;
-      border-radius: 50%;
+      padding: 0.3em 0.4em;
+      border-radius: 0 8px 8px 0;
       cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      transition: background 0.3s, left 0.3s;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+      transition: background 0.3s;
       z-index: 1100;
     }
 
     .toggle-arrow:hover {
       background-color: #388e3c;
-      left: 5px; /* se muestra un poco más al pasar el mouse */
     }
 
     /* === CONTENIDO === */
@@ -198,10 +200,10 @@
 </head>
 <body>
 
-  <!-- Botón menú -->
-  <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
+  <!-- Flecha para abrir/cerrar -->
+  <div class="toggle-arrow" id="menuArrow" onclick="toggleSidebar()">▶</div>
 
-  <!-- Menú lateral tipo cortina -->
+  <!-- Menú lateral central -->
   <div class="sidebar" id="sidebar">
     <nav>
       <a href="#inicio" onclick="toggleSidebar()">Inicio</a>
@@ -257,7 +259,9 @@
 
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
+      const arrow = document.getElementById('menuArrow');
       sidebar.classList.toggle('show');
+      arrow.textContent = sidebar.classList.contains('show') ? '◀' : '▶';
     }
 
     function hablarClari() {
