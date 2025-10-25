@@ -27,7 +27,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 160px;
+      width: 180px;
       height: 100%;
       background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
       padding: 3em 1em;
@@ -56,10 +56,11 @@
       color: #a5d6a7;
     }
 
+    /* Botón del menú, semi-visible en la esquina superior izquierda */
     .toggle-arrow {
       position: fixed;
       top: 20px;
-      left: 20px;
+      left: -10px; /* mitad oculta */
       font-size: 1.6em;
       color: white;
       background-color: #2e7d32;
@@ -67,12 +68,13 @@
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      transition: background 0.3s;
+      transition: background 0.3s, left 0.3s;
       z-index: 1100;
     }
 
     .toggle-arrow:hover {
       background-color: #388e3c;
+      left: 5px; /* se muestra un poco más al pasar el mouse */
     }
 
     /* === CONTENIDO === */
@@ -170,7 +172,7 @@
       text-align: left;
     }
 
-    .boton-pausa {
+    .boton-control {
       display: inline-block;
       margin-top: 0.8em;
       background-color: #1b5e20;
@@ -180,9 +182,10 @@
       font-size: 0.8em;
       cursor: pointer;
       border: none;
+      margin-right: 0.3em;
     }
 
-    .boton-pausa:hover {
+    .boton-control:hover {
       background-color: #43a047;
     }
 
@@ -243,10 +246,11 @@
   <!-- Chatbot Clari - Oso Polar -->
   <div class="dialogo" id="dialogo">
     <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
-    <button class="boton-pausa" onclick="pausarClari()">⏸️ Detener voz</button>
+    <button class="boton-control" onclick="pausarClari()">⏸️ Detener voz</button>
+    <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
-  <img class="mascota" src="https://i.postimg.cc/JzL2c9Hk/oso-polar.png" alt="Clari el Oso Polar" onclick="hablarClari()">
+  <img class="mascota" src="https://cdn.pixabay.com/photo/2017/01/31/15/23/polar-bear-2022634_1280.png" alt="Clari el Oso Polar" onclick="hablarClari()">
 
   <script>
     let vozEnCurso = null;
@@ -261,11 +265,8 @@
       const mensaje = document.getElementById('mensajeClari').textContent;
 
       dialogo.style.display = 'block';
-
-      // Detiene cualquier voz previa
       speechSynthesis.cancel();
 
-      // Inicia nueva voz
       vozEnCurso = new SpeechSynthesisUtterance(mensaje);
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
@@ -274,6 +275,12 @@
     }
 
     function pausarClari() {
+      speechSynthesis.cancel();
+    }
+
+    function cerrarDialogo() {
+      const dialogo = document.getElementById('dialogo');
+      dialogo.style.display = 'none';
       speechSynthesis.cancel();
     }
   </script>
