@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Claravía</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -22,8 +21,8 @@
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 250px;
+      left: -240px;
+      width: 240px;
       height: 100%;
       background-color: #2e7d32;
       padding: 2em 1em;
@@ -39,6 +38,7 @@
       text-decoration: none;
       margin: 1em 0;
       font-weight: bold;
+      font-size: 1.1em;
     }
     .sidebar a:hover {
       text-decoration: underline;
@@ -50,20 +50,20 @@
       background-color: #1b5e20;
       color: white;
       border: none;
-      padding: 0.5em 1em;
+      padding: 0.6em 1em;
       font-size: 1em;
       border-radius: 5px;
       z-index: 1100;
+      cursor: pointer;
     }
 
     /* Encabezado con logo */
     header {
       background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
-      padding: 5em 1.5em 3em;
+      padding: 6em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
-      position: relative;
     }
     header img {
       width: 100px;
@@ -82,7 +82,7 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección central con fondo */
+    /* Sección central */
     .central {
       background: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       padding: 4em 1.5em;
@@ -92,6 +92,7 @@
       margin-bottom: 2em;
     }
 
+    /* Botón */
     .btn {
       display: inline-block;
       background-color: #2e7d32;
@@ -145,6 +146,19 @@
       font-size: 0.9em;
       text-shadow: 1px 1px 2px #000;
     }
+    .whatsapp {
+      display: inline-block;
+      margin-top: 1em;
+      background-color: #25D366;
+      color: white;
+      padding: 0.8em 1.5em;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .whatsapp:hover {
+      background-color: #128C7E;
+    }
   </style>
 </head>
 <body>
@@ -166,17 +180,17 @@
   <section class="central" id="nosotros">
     <h2>¿Qué es Claravía?</h2>
     <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
-    <a href="https://wa.me/57TU_NUMERO" class="btn" target="_blank">Contáctanos por WhatsApp</a>
   </section>
 
   <footer id="contacto">
-    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
+    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia<br>
+    <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
   </footer>
 
   <!-- Chatbot -->
   <div id="chatbot">
     <h3>Chat Claravía</h3>
-    <div id="chatlog">Hola 👋 ¿En qué podemos ayudarte?</div>
+    <div id="chatlog">🌿 “Gracias por confiar en Claravía. ¿Cómo podemos ayudarte hoy?”</div>
     <input type="text" id="chatinput" placeholder="Escribe tu mensaje...">
   </div>
 
@@ -194,7 +208,7 @@
         const userMsg = chatInput.value;
         if (userMsg.trim() !== '') {
           chatLog.innerHTML += `<br><strong>Tú:</strong> ${userMsg}`;
-          chatLog.innerHTML += `<br><strong>Claravía:</strong> Gracias por tu mensaje. Te responderemos pronto.`;
+          chatLog.innerHTML += `<br><strong>Claravía:</strong> 🌱 “Gracias por tu mensaje. Te responderemos pronto.”`;
           chatInput.value = '';
         }
       }
