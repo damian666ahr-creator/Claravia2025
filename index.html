@@ -166,8 +166,8 @@
       <a href="#nosotros">Purificación</a>
       <a href="#expansion">Comunidad</a>
       <a href="#impacto">Impacto</a>
-      <a href="#respira">Respiro</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#respira">Contáctanos</a>
+      <a href="#contacto">Créditos</a>
     </nav>
   </div>
 
@@ -192,13 +192,13 @@
   </section>
 
   <section class="respira" id="respira">
-    <h2>Respira profundo</h2>
-    <p>Este espacio es para pausar, contemplar y reconectar. Claravía no solo purifica el aire, también el alma.</p>
+    <h2>Contáctanos</h2>
+    <p>¿Quieres llevar Claravía a tu comunidad? Escríbenos y te ayudamos con todo el proceso.</p>
+    <a href="https://wa.me/573001112233" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
   </section>
 
   <footer id="contacto">
-    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia<br>
-    <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
+    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
   <!-- Muñequito y burbuja de mensaje -->
@@ -210,6 +210,14 @@
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('show');
     }
+
+    // Muñequito habla al cargar
+    window.addEventListener('load', () => {
+      const mensaje = "Hola, soy Clari. Si tienes dudas o quieres llevar Claravía a tu comunidad, escríbenos por WhatsApp. Estoy aquí para ayudarte.";
+      const voz = new SpeechSynthesisUtterance(mensaje);
+      voz.lang = "es-ES";
+      speechSynthesis.speak(voz);
+    });
   </script>
 
 </body>
