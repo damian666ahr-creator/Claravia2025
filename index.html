@@ -19,6 +19,7 @@
       background-attachment: fixed;
       color: #e0e0e0;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Menú tipo cortina */
@@ -26,12 +27,12 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 160px;
+      width: 180px;
       height: 100%;
       background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
       padding: 3em 1em;
       transform: translateX(-100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
       z-index: 1000;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
     }
@@ -48,12 +49,17 @@
       font-weight: bold;
       font-size: 1em;
       text-shadow: 1px 1px 2px #000;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar nav a:hover {
+      color: #a5d6a7;
     }
 
     .toggle-arrow {
       position: absolute;
       top: 20px;
-      right: -25px;
+      right: -35px;
       font-size: 1.6em;
       color: white;
       background-color: #2e7d32;
@@ -61,6 +67,11 @@
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    .toggle-arrow:hover {
+      background-color: #388e3c;
     }
 
     header {
@@ -125,7 +136,7 @@
       background-color: #128C7E;
     }
 
-    /* Muñequito tipo chatbot */
+    /* Chatbot */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -138,7 +149,7 @@
 
     .dialogo {
       position: fixed;
-      bottom: 130px;
+      bottom: 140px;
       right: 130px;
       background-color: #2e7d32;
       color: white;
@@ -149,6 +160,7 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
       display: none;
+      text-align: left;
     }
 
     @keyframes flotar {
@@ -164,12 +176,12 @@
   <div class="sidebar" id="sidebar">
     <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
     <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#nosotros">Purificación</a>
-      <a href="#expansion">Comunidad</a>
-      <a href="#impacto">Impacto</a>
-      <a href="#respira">Contáctanos</a>
-      <a href="#contacto">Créditos</a>
+      <a href="#inicio" onclick="toggleSidebar()">Inicio</a>
+      <a href="#nosotros" onclick="toggleSidebar()">Purificación</a>
+      <a href="#expansion" onclick="toggleSidebar()">Comunidad</a>
+      <a href="#impacto" onclick="toggleSidebar()">Impacto</a>
+      <a href="#respira" onclick="toggleSidebar()">Contáctanos</a>
+      <a href="#contacto" onclick="toggleSidebar()">Créditos</a>
     </nav>
   </div>
 
@@ -203,7 +215,7 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Muñequito y diálogo -->
+  <!-- Chatbot -->
   <div class="dialogo" id="dialogo">Hola, soy Clari 🌿 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</div>
   <img class="mascota" src="https://i.postimg.cc/3x3QzSGq/mu-eco.png" alt="Mascota Claravía" onclick="hablarClari()">
 
@@ -214,22 +226,20 @@
     }
 
     function hablarClari() {
-      const texto = "Hola, soy Clari. ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.";
-      const voz = new SpeechSynthesisUtterance(texto);
-      voz.lang = "es-ES";
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('show');
-    }
-
-    function hablarClari() {
       const dialogo = document.getElementById('dialogo');
       dialogo.style.display = 'block';
 
-      const mensaje = "Hola, soy Clari. ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.";
+      // Texto personalizable del chatbot
+      const mensaje = "Hola, soy Clari 🌿. Estoy aquí para ayudarte a conocer Claravía. Puedes escribirme por WhatsApp si tienes preguntas.";
+      
+      // Mostrar texto
+      dialogo.textContent = mensaje;
+
+      // Voz
       const voz = new SpeechSynthesisUtterance(mensaje);
       voz.lang = "es-ES";
+      voz.rate = 1;
+      voz.pitch = 1.1;
       speechSynthesis.speak(voz);
     }
   </script>
