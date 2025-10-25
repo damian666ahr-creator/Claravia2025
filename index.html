@@ -19,10 +19,9 @@
       background-attachment: fixed;
       color: #f0f0f0;
       line-height: 1.6;
-      text-shadow: 1px 1px 2px #000;
     }
 
-    /* === MENÚ LATERAL TIPO CORTINA === */
+    /* === MENÚ LATERAL === */
     .sidebar {
       position: fixed;
       top: 0;
@@ -43,15 +42,16 @@
 
     .sidebar nav a {
       display: block;
-      color: #ffffff;
+      color: white;
       text-decoration: none;
       margin: 1.2em 0;
       font-weight: bold;
-      font-size: 1.1em;
-      text-shadow: 2px 2px 4px #000;
+      font-size: 1em;
+      text-shadow: 1px 1px 3px #000;
+      -webkit-text-stroke: 1px #000;
     }
 
-    /* === Flecha del menú (sin fondo) === */
+    /* === Flecha del menú === */
     .toggle-arrow {
       position: fixed;
       top: 50%;
@@ -87,7 +87,8 @@
 
     header h1 {
       font-size: 2.2em;
-      margin-bottom: 1em;
+      -webkit-text-stroke: 1px #000;
+      text-shadow: 2px 2px 4px #000;
     }
 
     header img {
@@ -98,23 +99,26 @@
     }
 
     section {
+      position: relative;
       padding: 4em 1.5em;
       margin-bottom: 2em;
       text-align: center;
-      color: #f0f0f0;
-      text-shadow: 1px 1px 3px #000;
+      color: white;
+      -webkit-text-stroke: 1px #000;
+      text-shadow: 2px 2px 4px #000;
     }
 
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 1em;
-      text-shadow: 2px 2px 5px #000;
+    section::before {
+      content: '';
+      position: absolute;
+      top:0; left:0; width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5); /* fondo semi-transparente */
+      z-index: 0;
     }
 
-    section p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: 0 auto;
+    section * {
+      position: relative;
+      z-index: 1;
     }
 
     .central {
@@ -138,29 +142,19 @@
       color: white;
       text-align: center;
       padding: 3em 1.5em;
-      font-size: 0.95em;
+      font-size: 0.9em;
       text-shadow: 2px 2px 4px #000;
     }
 
-    /* === Botón WhatsApp solo icono === */
-    .whatsapp-icon {
-      display: inline-block;
-      margin-top: 1em;
-      text-decoration: none;
-    }
-
+    /* WhatsApp solo icono */
     .whatsapp-icon img {
       width: 60px;
       height: 60px;
-      transition: transform 0.3s ease;
       filter: drop-shadow(0 0 5px #00e676);
+      cursor: pointer;
     }
 
-    .whatsapp-icon img:hover {
-      transform: scale(1.2);
-    }
-
-    /* === Chatbot Pingu === */
+    /* === CHATBOT PINGU === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -187,7 +181,7 @@
       color: white;
       padding: 1em;
       border-radius: 10px;
-      font-size: 0.95em;
+      font-size: 0.9em;
       max-width: 240px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
@@ -217,7 +211,6 @@
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-
   </style>
 </head>
 <body>
@@ -239,7 +232,7 @@
 
   <!-- Encabezado -->
   <header id="inicio">
-    <h1>¡Bienvenidos a Claravía!</h1>
+    <h1>¡Bienvenidos a!</h1>
     <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
   </header>
 
@@ -260,9 +253,7 @@
 
   <section class="respira" id="respira">
     <h2>Contáctanos</h2>
-    <p>¿Quieres llevar Claravía a tu comunidad? Escríbenos y te ayudamos con todo el proceso.</p>
-    
-    <!-- Botón solo con icono de WhatsApp -->
+    <p>¿Quieres llevar Claravía a tu comunidad? Haz clic en el icono y te ayudamos con todo el proceso.</p>
     <a href="https://wa.me/573001112233" class="whatsapp-icon" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
@@ -274,12 +265,12 @@
 
   <!-- Chatbot Pingu -->
   <div class="dialogo" id="dialogo">
-    <p id="mensajePingu">Hola, soy Pingu 🐧 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
+    <p id="mensajePingu">Hola, soy Pingu 🐧 ¿Tienes dudas sobre Claravía? Haz clic en el icono de WhatsApp y te ayudamos.</p>
     <button class="boton-control" onclick="pausarPingu()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
-  <!-- Imagen del chatbot con fondo transparente -->
+  <!-- Imagen del chatbot -->
   <img
     class="mascota"
     src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png"
