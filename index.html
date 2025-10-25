@@ -19,67 +19,62 @@
       background-attachment: fixed;
       color: #e0e0e0;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    /* === MENÚ LATERAL CENTRADO CON SU FONDO ORIGINAL === */
+    /* === MENÚ LATERAL ORIGINAL TIPO CORTINA === */
     .sidebar {
       position: fixed;
-      top: 50%;
+      top: 0;
       left: 0;
-      transform: translate(-100%, -50%);
-      width: 180px;
-      height: auto;
+      width: 160px;
+      height: 100%;
       background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
-      padding: 2em 1em;
-      border-radius: 0 10px 10px 0;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.4);
-      transition: transform 0.4s ease;
+      padding: 3em 1em;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
       z-index: 1000;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
     }
 
     .sidebar.show {
-      transform: translate(0, -50%);
+      transform: translateX(0);
     }
 
     .sidebar nav a {
       display: block;
-      color: #fff;
+      color: white;
       text-decoration: none;
       margin: 1.2em 0;
       font-weight: bold;
       font-size: 1em;
-      text-shadow: 1px 1px 3px #000;
-      transition: color 0.3s ease, transform 0.3s;
+      text-shadow: 1px 1px 2px #000;
     }
 
-    .sidebar nav a:hover {
-      color: #a5d6a7;
-      transform: translateX(5px);
-    }
-
-    /* Flecha para abrir/cerrar menú */
+    /* Botón del menú (☰) ajustado para no tapar */
     .toggle-arrow {
       position: fixed;
       top: 50%;
-      left: 0;
+      left: -5px; /* un poco escondido para no tapar el texto del menú */
       transform: translateY(-50%);
-      font-size: 1.8em;
+      font-size: 1.6em;
       color: white;
       background-color: #2e7d32;
       padding: 0.3em 0.5em;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 50% 50% 0;
       cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      transition: background 0.3s;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: left 0.3s ease;
       z-index: 1100;
+    }
+
+    .sidebar.show + .toggle-arrow {
+      left: 160px; /* se corre a la derecha cuando se abre el menú */
     }
 
     .toggle-arrow:hover {
       background-color: #43a047;
     }
 
-    /* === CONTENIDO === */
     header {
       background: url('https://images.pexels.com/photos/788200/pexels-photo-788200.jpeg') center/cover no-repeat;
       padding: 6em 1.5em 3em;
@@ -200,10 +195,7 @@
 </head>
 <body>
 
-  <!-- Flecha para abrir/cerrar -->
-  <div class="toggle-arrow" id="menuArrow" onclick="toggleSidebar()">▶</div>
-
-  <!-- Menú lateral con fondo original -->
+  <!-- Menú lateral -->
   <div class="sidebar" id="sidebar">
     <nav>
       <a href="#inicio" onclick="toggleSidebar()">Inicio</a>
@@ -214,6 +206,9 @@
       <a href="#contacto" onclick="toggleSidebar()">Créditos</a>
     </nav>
   </div>
+
+  <!-- Botón del menú -->
+  <div class="toggle-arrow" id="menuArrow" onclick="toggleSidebar()">☰</div>
 
   <!-- Encabezado -->
   <header id="inicio">
@@ -261,7 +256,12 @@
       const sidebar = document.getElementById('sidebar');
       const arrow = document.getElementById('menuArrow');
       sidebar.classList.toggle('show');
-      arrow.textContent = sidebar.classList.contains('show') ? '◀' : '▶';
+
+      if (sidebar.classList.contains('show')) {
+        arrow.style.left = '160px';
+      } else {
+        arrow.style.left = '-5px';
+      }
     }
 
     function hablarClari() {
