@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Claravía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf7;
+      color: #333;
+      line-height: 1.6;
+    }
 
+    /* Botón único centrado para abrir/cerrar menú */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8em;
+      color: white;
+      background-color: #2e7d32;
+      padding: 0.3em 0.6em;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1100;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    /* Menú lateral con fondo y tamaño ajustado */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -160px;
+      width: 160px;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+      padding: 3em 1em;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 1.2em 0;
+      font-weight: bold;
+      font-size: 1em;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .sidebar nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Encabezado con logo */
+    header {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      padding: 6em 1.5em 3em;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      text-shadow: 1px 1px 3px #000;
+    }
+    header p {
+      font-size: 1.2em;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    /* Sección central */
+    .central {
+      background: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 4em 1.5em;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
+      margin-bottom: 2em;
+    }
+
+    /* Pie de página */
+    footer {
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 3em 1.5em;
+      font-size: 0.9em;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .whatsapp {
+      display: inline-block;
+      margin-top: 1em;
+      background-color: #25D366;
+      color: white;
+      padding: 0.8em 1.5em;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .whatsapp:hover {
+      background-color: #128C7E;
+    }
+
+    /* Botón de voz */
+    .voice-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.8em 1.2em;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón único para abrir/cerrar menú -->
+  <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+
+  <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+
+  <header id="inicio">
+    <img src="logo.png" alt="Logo Claravía">
+    <h1>Claravía</h1>
+    <p>Respiramos esperanza. Purificamos futuro.</p>
+  </header>
+
+  <section class="central" id="nosotros">
+    <h2>¿Qué es Claravía?</h2>
+    <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
+  </section>
+
+  <footer id="contacto">
+    &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia<br>
+    <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
+  </footer>
+
+  <button class="voice-btn" onclick="hablar()">🗣️ Escuchar mensaje</button>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show');
+    }
+
+    function hablar() {
+      const mensaje = "Gracias por confiar en Claravía. Estamos aquí para ayudarte a respirar mejor y vivir con esperanza.";
+      const voz = new SpeechSynthesisUtterance(mensaje);
+      voz.lang = "es-ES";
+      speechSynthesis.speak(voz);
+    }
+  </script>
+
+</body>
+</html>
