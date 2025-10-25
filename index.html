@@ -77,13 +77,23 @@
 
     header {
       background: url('https://images.pexels.com/photos/788200/pexels-photo-788200.jpeg') center/cover no-repeat;
-      padding: 6em 1.5em 3em;
+      padding: 3em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
-      color: white;
-      text-shadow: 2px 2px 5px #000;
-      font-size: 3em;
-      font-weight: bold;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    header img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
 
     section {
@@ -134,7 +144,7 @@
       background-color: #128C7E;
     }
 
-    /* === CHATBOT PINGO === */
+    /* === CHATBOT PINGU === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -212,7 +222,8 @@
 
   <!-- Encabezado -->
   <header id="inicio">
-    Bienvenidos
+    <h1>Bienvenidos</h1>
+    <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
   </header>
 
   <section class="central" id="nosotros">
@@ -240,10 +251,10 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Chatbot Pingo -->
+  <!-- Chatbot Pingu -->
   <div class="dialogo" id="dialogo">
-    <p id="mensajePingo">Hola, soy Pingo 🐧 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
-    <button class="boton-control" onclick="pausarPingo()">⏸️ Detener voz</button>
+    <p id="mensajePingu">Hola, soy Pingu 🐧 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
+    <button class="boton-control" onclick="pausarPingu()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
@@ -251,8 +262,8 @@
   <img
     class="mascota"
     src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png"
-    alt="Pingo Chatbot"
-    onclick="hablarPingo()"
+    alt="Pingu"
+    onclick="hablarPingu()"
   />
 
   <script>
@@ -268,25 +279,29 @@
       flecha.style.left = abierto ? '160px' : '-5px';
     }
 
-    function hablarPingo() {
+    function hablarPingu() {
       const dialogo = document.getElementById('dialogo');
-      const mensaje = document.getElementById('mensajePingo').textContent;
+      const mensaje = document.getElementById('mensajePingu').textContent;
       dialogo.style.display = 'block';
       speechSynthesis.cancel();
       vozEnCurso = new SpeechSynthesisUtterance(mensaje);
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
-      vozEnCurso.pitch = 1;
-      
-      // Selección de voz masculina elegante
+      vozEnCurso.pitch = 1.1;
+
+      // Intentar voz masculina elegante
       const voces = speechSynthesis.getVoices();
-      const vozMasculina = voces.find(v => v.lang.startsWith('es') && v.name.toLowerCase().includes('male')) || voces[0];
-      vozEnCurso.voice = vozMasculina;
+      for(let i=0;i<voces.length;i++){
+        if(voces[i].lang.startsWith('es') && voces[i].name.toLowerCase().includes('male')) {
+          vozEnCurso.voice = voces[i];
+          break;
+        }
+      }
 
       speechSynthesis.speak(vozEnCurso);
     }
 
-    function pausarPingo() {
+    function pausarPingu() {
       speechSynthesis.cancel();
     }
 
@@ -294,11 +309,6 @@
       document.getElementById('dialogo').style.display = 'none';
       speechSynthesis.cancel();
     }
-
-    // Para asegurar que las voces se carguen
-    window.speechSynthesis.onvoiceschanged = function() {
-      console.log("Voces cargadas");
-    };
   </script>
 
 </body>
