@@ -17,6 +17,24 @@
       color: #333;
       line-height: 1.6;
     }
+
+    /* Menú de navegación */
+    nav {
+      background-color: #2e7d32;
+      padding: 1em;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Encabezado con fondo */
     header {
       background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
@@ -32,18 +50,16 @@
       font-size: 1.3em;
       text-shadow: 1px 1px 2px #000;
     }
-    section {
-      padding: 2em 1.5em;
+
+    /* Sección central con fondo propio */
+    .central {
+      background: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 3em 1.5em;
       text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
     }
-    section h2 {
-      color: #2e7d32;
-      margin-bottom: 1em;
-    }
-    section p {
-      font-size: 1.1em;
-      margin-bottom: 1.5em;
-    }
+
     .btn {
       display: inline-block;
       background-color: #2e7d32;
@@ -57,10 +73,37 @@
     .btn:hover {
       background-color: #1b5e20;
     }
-    #qrcode {
-      margin: 2em auto;
-      max-width: 200px;
+
+    /* Chatbot básico */
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 250px;
+      max-height: 300px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 1em;
+      font-size: 0.9em;
     }
+    #chatbot h3 {
+      margin-bottom: 0.5em;
+      color: #2e7d32;
+    }
+    #chatlog {
+      margin-bottom: 1em;
+    }
+    #chatbot input {
+      width: 100%;
+      padding: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Pie de página con fondo */
     footer {
       background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
@@ -73,34 +116,46 @@
 </head>
 <body>
 
-  <header>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <header id="inicio">
     <h1>Claravía</h1>
     <p>Respiramos esperanza. Purificamos futuro.</p>
   </header>
 
-  <section>
+  <section class="central" id="nosotros">
     <h2>¿Qué es Claravía?</h2>
     <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
     <a href="https://wa.me/57TU_NUMERO" class="btn" target="_blank">Contáctanos por WhatsApp</a>
   </section>
 
-  <section>
-    <h2>Escanea para compartir</h2>
-    <canvas id="qrcode"></canvas>
-    <p>Este código te lleva directamente a nuestra página web. ¡Compártelo con tu comunidad!</p>
-  </section>
-
-  <footer>
+  <footer id="contacto">
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
+  <!-- Chatbot básico -->
+  <div id="chatbot">
+    <h3>Chat Claravía</h3>
+    <div id="chatlog">Hola 👋 ¿En qué podemos ayudarte?</div>
+    <input type="text" id="chatinput" placeholder="Escribe tu mensaje...">
+  </div>
+
   <script>
-    const urlEmpresa = "https://damian666ahr-creator.github.io/Claravia2025/";
-    QRCode.toCanvas(document.getElementById('qrcode'), urlEmpresa, function (error) {
-      if (error) {
-        console.error("Error al generar el QR:", error);
-      } else {
-        console.log("QR generado correctamente!");
+    const chatInput = document.getElementById('chatinput');
+    const chatLog = document.getElementById('chatlog');
+
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const userMsg = chatInput.value;
+        if (userMsg.trim() !== '') {
+          chatLog.innerHTML += `<br><strong>Tú:</strong> ${userMsg}`;
+          chatLog.innerHTML += `<br><strong>Claravía:</strong> Gracias por tu mensaje. Te responderemos pronto.`;
+          chatInput.value = '';
+        }
       }
     });
   </script>
