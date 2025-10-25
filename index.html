@@ -39,14 +39,13 @@
 
     .sidebar nav a {
       display: block;
-      color: white;
       text-decoration: none;
       margin: 1.2em 0;
       font-weight: bold;
       font-size: 1.2em;
-      -webkit-text-stroke: 1px black;
       color: white;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      -webkit-text-stroke: 0.8px black;
+      text-shadow: 0 0 4px rgba(0,0,0,0.7);
     }
 
     /* === Flecha del menú === */
@@ -83,15 +82,15 @@
     }
 
     header h1 {
-      font-size: 2.5em; /* más pequeño */
-      -webkit-text-stroke: 2px black;
+      font-size: 2.3em;
+      -webkit-text-stroke: 1.2px black;
       color: white;
-      text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     }
 
     header img {
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       box-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
@@ -105,18 +104,18 @@
     }
 
     section h2 {
-      font-size: 2.5em;
-      -webkit-text-stroke: 2px black; /* borde negro */
+      font-size: 2.2em;
+      -webkit-text-stroke: 1.5px black;
       color: white;
-      text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     section p {
-      font-size: 1.4em;
+      font-size: 1.3em;
       font-weight: bold;
-      -webkit-text-stroke: 1px black;
-      color: #ffffff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      -webkit-text-stroke: 0.6px black;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
       margin-top: 0.5em;
     }
 
@@ -143,9 +142,8 @@
       padding: 3em 1.5em;
       font-size: 1.2em;
       font-weight: bold;
-      -webkit-text-stroke: 1px black;
-      color: #ffffff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      -webkit-text-stroke: 0.8px black;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     /* WhatsApp solo icono */
@@ -161,7 +159,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 110px;
+      width: 100px;
       cursor: pointer;
       z-index: 1000;
       animation: flotar 3s ease-in-out infinite;
@@ -177,8 +175,8 @@
 
     .dialogo {
       position: fixed;
-      bottom: 150px;
-      right: 150px;
+      bottom: 140px;
+      right: 130px;
       background-color: #2e7d32;
       color: white;
       padding: 1em;
@@ -212,6 +210,34 @@
       0% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
+    }
+
+    /* === AJUSTES PARA MÓVILES === */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+        -webkit-text-stroke: 0.8px black;
+      }
+      section h2 {
+        font-size: 1.7em;
+        -webkit-text-stroke: 1px black;
+      }
+      section p {
+        font-size: 1.1em;
+        -webkit-text-stroke: 0.5px black;
+      }
+      footer {
+        font-size: 1em;
+        -webkit-text-stroke: 0.6px black;
+      }
+
+      /* Fondo semitransparente detrás del texto */
+      section h2, section p {
+        background: rgba(0,0,0,0.4);
+        display: inline-block;
+        padding: 0.3em 0.5em;
+        border-radius: 8px;
+      }
     }
   </style>
 </head>
@@ -262,13 +288,12 @@
   </section>
 
   <footer id="contacto">
-    &copy; 2025 
-    Boyacá, Colombia
+    &copy; 2025 Boyacá, Colombia
   </footer>
 
   <!-- Chatbot Pingu -->
   <div class="dialogo" id="dialogo">
-    <p id="mensajePingu">Hola, soy Pingu. ¿tienes alguna sugerencia o quieres saber mas sobre nuestro proyecto? Haz clic en el icono de WhatsApp y te ayudamos.</p>
+    <p id="mensajePingu">Hola, soy Pingu. ¿Tienes alguna sugerencia o quieres saber más sobre nuestro proyecto? Haz clic en el icono de WhatsApp y te ayudamos.</p>
     <button class="boton-control" onclick="pausarPingu()">⏸️ Detener voz</button>
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
