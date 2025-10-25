@@ -4,30 +4,29 @@
   <meta charset="UTF-8" />
   <title>Claravía</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Claravía: purificador ecológico para comunidades con aire limpio y bienestar.">
-  <link rel="icon" href="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg">
-
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <style>
-    :root {
-      --color-principal: #2e7d32;
-      --color-texto: #e0e0e0;
-      --color-acento: #76ff03;
-      --ancho-sidebar: 160px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background-color: #000; background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); background-repeat: repeat; background-attachment: fixed; color: var(--color-texto); line-height: 1.6; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      background-repeat: repeat;
+      background-attachment: fixed;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
 
-    /* Sidebar */
+    /* === MENÚ LATERAL TIPO CORTINA === */
     .sidebar {
       position: fixed;
       top: 0;
       left: 0;
-      width: var(--ancho-sidebar);
+      width: 160px;
       height: 100%;
       background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
       padding: 3em 1em;
@@ -35,10 +34,11 @@
       transition: transform 0.3s ease;
       z-index: 1000;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      will-change: transform;
     }
 
-    .sidebar.show { transform: translateX(0); }
+    .sidebar.show {
+      transform: translateX(0);
+    }
 
     .sidebar nav a {
       display: block;
@@ -50,7 +50,7 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* Flecha */
+    /* === Flecha del menú (sin fondo) === */
     .toggle-arrow {
       position: fixed;
       top: 50%;
@@ -65,37 +65,61 @@
       user-select: none;
     }
 
-    .toggle-arrow:hover { transform: translateY(-50%) scale(1.2); color: var(--color-acento); text-shadow: 0 0 10px var(--color-acento); }
-    .sidebar.show + .toggle-arrow { left: var(--ancho-sidebar); }
+    .toggle-arrow:hover {
+      transform: translateY(-50%) scale(1.2);
+      color: #b2ff59;
+      text-shadow: 0 0 10px #76ff03;
+    }
 
-    /* Encabezado */
+    .sidebar.show + .toggle-arrow {
+      left: 160px;
+    }
+
     header {
       background: url('https://images.pexels.com/photos/788200/pexels-photo-788200.jpeg') center/cover no-repeat;
-      padding: 3em 1.5em;
+      padding: 3em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
     }
 
-    header h1 { font-size: 2em; margin-bottom: 1em; color: #ffffff; text-shadow: 2px 2px 4px #000; }
-    header img { width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000;
+    }
 
-    /* Secciones */
-    .section-bg {
+    header img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    section {
       padding: 4em 1.5em;
       margin-bottom: 2em;
       text-align: center;
       color: white;
       text-shadow: 1px 1px 2px #000;
-      background-size: cover;
-      background-position: center;
     }
 
-    .central { background-image: url('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg'); }
-    .expansion { background-image: url('https://images.pexels.com/photos/303024/pexels-photo-303024.jpeg'); }
-    .impacto { background-image: url('https://images.pexels.com/photos/87383/pexels-photo-87383.jpeg'); }
-    .respira { background-image: url('https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg'); }
+    .central {
+      background: url('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg') center/cover no-repeat;
+    }
 
-    /* Footer */
+    .expansion {
+      background: url('https://images.pexels.com/photos/303024/pexels-photo-303024.jpeg') center/cover no-repeat;
+    }
+
+    .impacto {
+      background: url('https://images.pexels.com/photos/87383/pexels-photo-87383.jpeg') center/cover no-repeat;
+    }
+
+    .respira {
+      background: url('https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg') center/cover no-repeat;
+    }
+
     footer {
       background: url('https://images.pexels.com/photos/103567/pexels-photo-103567.jpeg') center/cover no-repeat;
       color: white;
@@ -105,26 +129,24 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    .whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
+    /* === Botón WhatsApp solo icono === */
+    .whatsapp-icon {
+      display: inline-block;
       margin-top: 1em;
-      background-color: #25D366;
-      color: white;
-      padding: 0.8em 1.5em;
-      border-radius: 5px;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1em;
-      transition: all 0.3s;
     }
 
-    .whatsapp img { width: 24px; height: 24px; }
+    .whatsapp-icon img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
 
-    .whatsapp:hover { background-color: #128C7E; transform: scale(1.05); }
+    .whatsapp-icon img:hover {
+      transform: scale(1.1);
+    }
 
-    /* Chatbot Pingu */
+    /* === Chatbot Pingu === */
     .mascota {
       position: fixed;
       bottom: 20px;
@@ -139,13 +161,15 @@
       user-select: none;
     }
 
-    .mascota:hover { transform: scale(1.05); }
+    .mascota:hover {
+      transform: scale(1.05);
+    }
 
     .dialogo {
       position: fixed;
       bottom: 150px;
       right: 150px;
-      background-color: var(--color-principal);
+      background-color: #2e7d32;
       color: white;
       padding: 1em;
       border-radius: 10px;
@@ -170,17 +194,15 @@
       margin-right: 0.3em;
     }
 
-    .boton-control:hover { background-color: #43a047; }
+    .boton-control:hover {
+      background-color: #43a047;
+    }
 
     @keyframes flotar {
       0% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-
-    /* QR */
-    .qr-container { margin-top: 1em; }
-    .qr-container img { width: 120px; height: 120px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
   </style>
 </head>
 <body>
@@ -206,39 +228,36 @@
     <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía" />
   </header>
 
-  <!-- Secciones -->
-  <section class="section-bg central" id="nosotros">
+  <section class="central" id="nosotros">
     <h2>¿Qué es Claravía?</h2>
     <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
   </section>
 
-  <section class="section-bg expansion" id="expansion">
+  <section class="expansion" id="expansion">
     <h2>Expansión comunitaria</h2>
     <p>Estamos creciendo junto a comunidades rurales y urbanas, llevando aire limpio y esperanza a cada rincón. Claravía es más que un producto: es un movimiento.</p>
   </section>
 
-  <section class="section-bg impacto" id="impacto">
+  <section class="impacto" id="impacto">
     <h2>Impacto ambiental</h2>
     <p>Con cada unidad instalada, reducimos partículas contaminantes y sembramos conciencia ecológica. Claravía respira contigo y por ti.</p>
   </section>
 
-  <section class="section-bg respira" id="respira">
+  <section class="respira" id="respira">
     <h2>Contáctanos</h2>
     <p>¿Quieres llevar Claravía a tu comunidad? Escríbenos y te ayudamos con todo el proceso.</p>
     
-    <!-- Botón WhatsApp con ícono -->
-    <a href="https://wa.me/573001112233" class="whatsapp" target="_blank">
-      <img src="https://i.postimg.cc/Z5y0yGZb/whatsapp-icon.png" alt="WhatsApp"> Contáctanos por WhatsApp
+    <!-- Botón solo con icono de WhatsApp -->
+    <a href="https://wa.me/573001112233" class="whatsapp-icon" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- Código QR -->
-    <div class="qr-container">
-      <p>Escanea y accede a nuestra página:</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tusitio.com/#respira" alt="Código QR Claravía">
+    <!-- QR opcional -->
+    <div style="margin-top:1em;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://damian666ahr-creator.github.io/Claravia2025/&size=120x120" alt="QR Claravía">
     </div>
   </section>
 
-  <!-- Footer -->
   <footer id="contacto">
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
@@ -250,9 +269,14 @@
     <button class="boton-control" onclick="cerrarDialogo()">❌ Cerrar</button>
   </div>
 
-  <img class="mascota" src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png" alt="Pingu Chatbot" onclick="hablarPingu()"/>
+  <!-- Imagen del chatbot con fondo transparente -->
+  <img
+    class="mascota"
+    src="https://i.postimg.cc/Y0nCksbr/pinguino-removebg-preview.png"
+    alt="Pingu"
+    onclick="hablarPingu()"
+  />
 
-  <!-- JS -->
   <script>
     let vozEnCurso = null;
     let flecha = document.getElementById('menuArrow');
@@ -275,22 +299,26 @@
       vozEnCurso.lang = "es-ES";
       vozEnCurso.rate = 1;
       vozEnCurso.pitch = 1.1;
+
+      const voces = speechSynthesis.getVoices();
+      for(let i=0;i<voces.length;i++){
+        if(voces[i].lang.startsWith('es') && voces[i].name.toLowerCase().includes('male')) {
+          vozEnCurso.voice = voces[i];
+          break;
+        }
+      }
+
       speechSynthesis.speak(vozEnCurso);
     }
 
-    function pausarPingu() { speechSynthesis.cancel(); }
-    function cerrarDialogo() { document.getElementById('dialogo').style.display = 'none'; speechSynthesis.cancel(); }
+    function pausarPingu() {
+      speechSynthesis.cancel();
+    }
 
-    // Cerrar sidebar al hacer click fuera
-    document.addEventListener('click', (e) => {
-      const sidebar = document.getElementById('sidebar');
-      if(abierto && !sidebar.contains(e.target) && !flecha.contains(e.target)){
-        toggleSidebar();
-      }
-    });
-
-    // Cerrar diálogo con Escape
-    document.addEventListener('keydown', (e) => { if(e.key==='Escape') cerrarDialogo(); });
+    function cerrarDialogo() {
+      document.getElementById('dialogo').style.display = 'none';
+      speechSynthesis.cancel();
+    }
   </script>
 
 </body>
