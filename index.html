@@ -17,37 +17,22 @@
       line-height: 1.6;
     }
 
-    /* Botón único centrado para abrir/cerrar menú */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.8em;
-      color: white;
-      background-color: #2e7d32;
-      padding: 0.3em 0.6em;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1100;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
-
-    /* Menú lateral con fondo y tamaño ajustado */
+    /* Menú tipo cortina */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -160px;
-      width: 160px;
+      left: 0;
+      width: 140px;
       height: 100%;
       background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
       padding: 3em 1em;
-      transition: left 0.3s ease;
+      transition: transform 0.4s ease;
+      transform: translateX(-100%);
       z-index: 1000;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
     }
     .sidebar.show {
-      left: 0;
+      transform: translateX(0);
     }
     .sidebar nav a {
       display: block;
@@ -60,6 +45,20 @@
     }
     .sidebar nav a:hover {
       text-decoration: underline;
+    }
+
+    /* Flecha dentro del menú */
+    .toggle-arrow {
+      position: absolute;
+      top: 20px;
+      right: -25px;
+      font-size: 1.6em;
+      color: white;
+      background-color: #2e7d32;
+      padding: 0.3em 0.5em;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
 
     /* Encabezado con logo */
@@ -139,11 +138,9 @@
 </head>
 <body>
 
-  <!-- Botón único para abrir/cerrar menú -->
-  <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
-
-  <!-- Menú lateral -->
+  <!-- Menú tipo cortina -->
   <div class="sidebar" id="sidebar">
+    <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
     <nav>
       <a href="#inicio">Inicio</a>
       <a href="#nosotros">Nosotros</a>
