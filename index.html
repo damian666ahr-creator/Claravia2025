@@ -125,17 +125,18 @@
       background-color: #128C7E;
     }
 
-    /* Muñequito flotante */
+    /* Muñequito tipo chatbot */
     .mascota {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: 100px;
+      cursor: pointer;
       z-index: 1000;
       animation: flotar 3s ease-in-out infinite;
     }
 
-    .burbuja {
+    .dialogo {
       position: fixed;
       bottom: 130px;
       right: 130px;
@@ -144,9 +145,10 @@
       padding: 1em;
       border-radius: 10px;
       font-size: 0.9em;
-      max-width: 200px;
+      max-width: 220px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
+      display: none;
     }
 
     @keyframes flotar {
@@ -201,9 +203,9 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Muñequito y burbuja de mensaje -->
-  <div class="burbuja">Gracias por confiar en Claravía 🌱</div>
-  <img class="mascota" src="https://i.postimg.cc/3x3QzSGq/mu-eco.png" alt="Mascota Claravía">
+  <!-- Muñequito y diálogo -->
+  <div class="dialogo" id="dialogo">Hola, soy Clari 🌿 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</div>
+  <img class="mascota" src="https://i.postimg.cc/3x3QzSGq/mu-eco.png" alt="Mascota Claravía" onclick="hablarClari()">
 
   <script>
     function toggleSidebar() {
@@ -211,14 +213,25 @@
       sidebar.classList.toggle('show');
     }
 
-    // Muñequito habla al cargar
-    window.addEventListener('load', () => {
-      const mensaje = "Hola, soy Clari. Si tienes dudas o quieres llevar Claravía a tu comunidad, escríbenos por WhatsApp. Estoy aquí para ayudarte.";
+    function hablarClari() {
+      const texto = "Hola, soy Clari. ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.";
+      const voz = new SpeechSynthesisUtterance(texto);
+      voz.lang = "es-ES";
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show');
+    }
+
+    function hablarClari() {
+      const dialogo = document.getElementById('dialogo');
+      dialogo.style.display = 'block';
+
+      const mensaje = "Hola, soy Clari. ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.";
       const voz = new SpeechSynthesisUtterance(mensaje);
       voz.lang = "es-ES";
       speechSynthesis.speak(voz);
-    });
+    }
   </script>
-
 </body>
 </html>
