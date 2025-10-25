@@ -17,15 +17,15 @@
       line-height: 1.6;
     }
 
-    /* Menú lateral */
+    /* Menú lateral con fondo */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -240px;
-      width: 240px;
+      left: -260px;
+      width: 260px;
       height: 100%;
-      background-color: #2e7d32;
-      padding: 2em 1em;
+      background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+      padding: 3em 1.5em;
       transition: left 0.3s ease;
       z-index: 1000;
     }
@@ -36,7 +36,7 @@
       display: block;
       color: white;
       text-decoration: none;
-      margin: 1em 0;
+      margin: 1.2em 0;
       font-weight: bold;
       font-size: 1.1em;
     }
@@ -92,51 +92,6 @@
       margin-bottom: 2em;
     }
 
-    /* Botón */
-    .btn {
-      display: inline-block;
-      background-color: #2e7d32;
-      color: white;
-      padding: 0.8em 1.5em;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #1b5e20;
-    }
-
-    /* Chatbot */
-    #chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      width: 250px;
-      max-height: 300px;
-      overflow-y: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      padding: 1em;
-      font-size: 0.9em;
-      z-index: 1000;
-    }
-    #chatbot h3 {
-      margin-bottom: 0.5em;
-      color: #2e7d32;
-    }
-    #chatlog {
-      margin-bottom: 1em;
-    }
-    #chatbot input {
-      width: 100%;
-      padding: 0.5em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
     /* Pie de página */
     footer {
       background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
@@ -158,6 +113,21 @@
     }
     .whatsapp:hover {
       background-color: #128C7E;
+    }
+
+    /* Botón de voz */
+    .voice-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.8em 1.2em;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -187,12 +157,7 @@
     <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
   </footer>
 
-  <!-- Chatbot -->
-  <div id="chatbot">
-    <h3>Chat Claravía</h3>
-    <div id="chatlog">🌿 “Gracias por confiar en Claravía. ¿Cómo podemos ayudarte hoy?”</div>
-    <input type="text" id="chatinput" placeholder="Escribe tu mensaje...">
-  </div>
+  <button class="voice-btn" onclick="hablar()">🗣️ Escuchar mensaje</button>
 
   <script>
     function toggleSidebar() {
@@ -200,19 +165,12 @@
       sidebar.classList.toggle('show');
     }
 
-    const chatInput = document.getElementById('chatinput');
-    const chatLog = document.getElementById('chatlog');
-
-    chatInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        const userMsg = chatInput.value;
-        if (userMsg.trim() !== '') {
-          chatLog.innerHTML += `<br><strong>Tú:</strong> ${userMsg}`;
-          chatLog.innerHTML += `<br><strong>Claravía:</strong> 🌱 “Gracias por tu mensaje. Te responderemos pronto.”`;
-          chatInput.value = '';
-        }
-      }
-    });
+    function hablar() {
+      const mensaje = "Gracias por confiar en Claravía. Estamos aquí para ayudarte a respirar mejor y vivir con esperanza.";
+      const voz = new SpeechSynthesisUtterance(mensaje);
+      voz.lang = "es-ES";
+      speechSynthesis.speak(voz);
+    }
   </script>
 
 </body>
