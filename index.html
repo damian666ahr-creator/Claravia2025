@@ -86,20 +86,22 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección central con doble fondo */
+    /* Sección central con fondo */
     .central {
-      background-image:
-        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80'),
-        url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
-      background-blend-mode: overlay;
-      background-position: center;
-      background-size: cover;
+      background: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       padding: 4em 1.5em;
       text-align: center;
       color: white;
       text-shadow: 1px 1px 2px #000;
-      margin-bottom: 2em;
+    }
+
+    /* Nueva sección con otro fondo */
+    .expansion {
+      background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 4em 1.5em;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
     }
 
     /* Pie de página */
@@ -150,6 +152,7 @@
     <nav>
       <a href="#inicio">Inicio</a>
       <a href="#nosotros">Nosotros</a>
+      <a href="#expansion">Expansión</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
@@ -163,6 +166,11 @@
   <section class="central" id="nosotros">
     <h2>¿Qué es Claravía?</h2>
     <p>Claravía es una solución ecológica pensada para comunidades que merecen aire limpio y bienestar. Nuestro purificador transforma espacios y fortalece vínculos.</p>
+  </section>
+
+  <section class="expansion" id="expansion">
+    <h2>Expansión comunitaria</h2>
+    <p>Estamos creciendo junto a comunidades rurales y urbanas, llevando aire limpio y esperanza a cada rincón. Claravía es más que un producto: es un movimiento.</p>
   </section>
 
   <footer id="contacto">
