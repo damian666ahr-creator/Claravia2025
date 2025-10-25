@@ -10,10 +10,14 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0fdf7;
-      color: #333;
+      background-color: #000;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      background-repeat: repeat;
+      background-attachment: fixed;
+      color: #e0e0e0;
       line-height: 1.6;
     }
 
@@ -43,11 +47,7 @@
       font-size: 1em;
       text-shadow: 1px 1px 2px #000;
     }
-    .sidebar nav a:hover {
-      text-decoration: underline;
-    }
 
-    /* Flecha dentro del menú */
     .toggle-arrow {
       position: absolute;
       top: 20px;
@@ -61,7 +61,6 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
 
-    /* Encabezado con logo */
     header {
       background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
@@ -86,48 +85,33 @@
       text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección 1: Purificación */
+    section {
+      padding: 4em 1.5em;
+      margin-bottom: 2em;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
+    }
+
     .central {
       background: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      padding: 4em 1.5em;
-      margin-bottom: 2em;
-      text-align: center;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección 2: Comunidad */
     .expansion {
       background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      padding: 4em 1.5em;
-      margin-bottom: 2em;
-      text-align: center;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección 3: Impacto */
     .impacto {
       background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      padding: 4em 1.5em;
-      margin-bottom: 2em;
-      text-align: center;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
     }
 
-    /* Sección 4: Respiro visual */
     .respira {
       background: linear-gradient(to bottom, #000000, #1a1a1a);
-      padding: 4em 1.5em;
-      margin-bottom: 2em;
-      text-align: center;
       color: #e0e0e0;
       font-size: 1.2em;
       letter-spacing: 0.5px;
     }
 
-    /* Pie de página */
     footer {
       background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
@@ -136,6 +120,7 @@
       font-size: 0.9em;
       text-shadow: 1px 1px 2px #000;
     }
+
     .whatsapp {
       display: inline-block;
       margin-top: 1em;
@@ -150,7 +135,6 @@
       background-color: #128C7E;
     }
 
-    /* Botón de voz */
     .voice-btn {
       position: fixed;
       bottom: 20px;
@@ -169,7 +153,6 @@
 </head>
 <body>
 
-  <!-- Menú tipo cortina -->
   <div class="sidebar" id="sidebar">
     <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
     <nav>
@@ -210,3 +193,24 @@
 
   <footer id="contacto">
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia<br>
+    <a href="https://wa.me/57TU_NUMERO" class="whatsapp" target="_blank">Contáctanos por WhatsApp</a>
+  </footer>
+
+  <button class="voice-btn" onclick="hablar()">🗣️ Escuchar mensaje</button>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show');
+    }
+
+    function hablar() {
+      const mensaje = "Gracias por confiar en Claravía. Estamos aquí para ayudarte a respirar mejor y vivir con esperanza.";
+      const voz = new SpeechSynthesisUtterance(mensaje);
+      voz.lang = "es-ES";
+      speechSynthesis.speak(voz);
+    }
+  </script>
+
+</body>
+</html>
