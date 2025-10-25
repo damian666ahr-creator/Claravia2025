@@ -45,7 +45,7 @@
       font-size: 1.2em;
       color: white;
       -webkit-text-stroke: 0.8px black;
-      text-shadow: 0 0 4px rgba(0,0,0,0.7);
+      text-shadow: 0 0 4px rgba(0,0,0,0.8);
     }
 
     /* === Flecha del menú === */
@@ -85,7 +85,11 @@
       font-size: 2.3em;
       -webkit-text-stroke: 1.2px black;
       color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.4);
+      display: inline-block;
+      padding: 0.4em 0.8em;
+      border-radius: 8px;
     }
 
     header img {
@@ -107,16 +111,24 @@
       font-size: 2.2em;
       -webkit-text-stroke: 1.5px black;
       color: white;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.55);
+      display: inline-block;
+      padding: 0.4em 0.8em;
+      border-radius: 8px;
     }
 
     section p {
       font-size: 1.3em;
       font-weight: bold;
-      -webkit-text-stroke: 0.6px black;
+      -webkit-text-stroke: 0.8px black;
       color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
       margin-top: 0.5em;
+      background: rgba(0,0,0,0.55);
+      display: inline-block;
+      padding: 0.5em 0.8em;
+      border-radius: 8px;
     }
 
     .central {
@@ -143,7 +155,8 @@
       font-size: 1.2em;
       font-weight: bold;
       -webkit-text-stroke: 0.8px black;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      background-blend-mode: darken;
     }
 
     /* WhatsApp solo icono */
@@ -216,27 +229,23 @@
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.8em;
-        -webkit-text-stroke: 0.8px black;
+        -webkit-text-stroke: 1px black;
+        background: rgba(0,0,0,0.65);
       }
       section h2 {
         font-size: 1.7em;
-        -webkit-text-stroke: 1px black;
+        -webkit-text-stroke: 1.2px black;
+        background: rgba(0,0,0,0.65);
       }
       section p {
         font-size: 1.1em;
-        -webkit-text-stroke: 0.5px black;
+        -webkit-text-stroke: 0.8px black;
+        background: rgba(0,0,0,0.65);
       }
       footer {
         font-size: 1em;
         -webkit-text-stroke: 0.6px black;
-      }
-
-      /* Fondo semitransparente detrás del texto */
-      section h2, section p {
-        background: rgba(0,0,0,0.4);
-        display: inline-block;
-        padding: 0.3em 0.5em;
-        border-radius: 8px;
+        background: rgba(0,0,0,0.65);
       }
     }
   </style>
