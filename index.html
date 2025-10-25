@@ -22,12 +22,12 @@
       overflow-x: hidden;
     }
 
-    /* Menú tipo cortina */
+    /* === MENÚ LATERAL === */
     .sidebar {
       position: fixed;
       top: 0;
       left: 0;
-      width: 180px;
+      width: 160px;
       height: 100%;
       background: url('https://images.pexels.com/photos/1679772/pexels-photo-1679772.jpeg') center/cover no-repeat;
       padding: 3em 1em;
@@ -57,9 +57,9 @@
     }
 
     .toggle-arrow {
-      position: absolute;
+      position: fixed;
       top: 20px;
-      right: -35px;
+      left: 20px;
       font-size: 1.6em;
       color: white;
       background-color: #2e7d32;
@@ -68,12 +68,14 @@
       cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
       transition: background 0.3s;
+      z-index: 1100;
     }
 
     .toggle-arrow:hover {
       background-color: #388e3c;
     }
 
+    /* === CONTENIDO === */
     header {
       background: url('https://images.pexels.com/photos/788200/pexels-photo-788200.jpeg') center/cover no-repeat;
       padding: 6em 1.5em 3em;
@@ -136,31 +138,52 @@
       background-color: #128C7E;
     }
 
-    /* Chatbot */
+    /* === CHATBOT (OSO POLAR) === */
     .mascota {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 100px;
+      width: 110px;
       cursor: pointer;
       z-index: 1000;
       animation: flotar 3s ease-in-out infinite;
+      transition: transform 0.3s;
+    }
+
+    .mascota:hover {
+      transform: scale(1.05);
     }
 
     .dialogo {
       position: fixed;
-      bottom: 140px;
-      right: 130px;
+      bottom: 150px;
+      right: 150px;
       background-color: #2e7d32;
       color: white;
       padding: 1em;
       border-radius: 10px;
       font-size: 0.9em;
-      max-width: 220px;
+      max-width: 240px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
       display: none;
       text-align: left;
+    }
+
+    .boton-pausa {
+      display: inline-block;
+      margin-top: 0.8em;
+      background-color: #1b5e20;
+      color: white;
+      padding: 0.4em 0.8em;
+      border-radius: 5px;
+      font-size: 0.8em;
+      cursor: pointer;
+      border: none;
+    }
+
+    .boton-pausa:hover {
+      background-color: #43a047;
     }
 
     @keyframes flotar {
@@ -172,9 +195,11 @@
 </head>
 <body>
 
+  <!-- Botón menú -->
+  <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
+
   <!-- Menú lateral tipo cortina -->
   <div class="sidebar" id="sidebar">
-    <div class="toggle-arrow" onclick="toggleSidebar()">☰</div>
     <nav>
       <a href="#inicio" onclick="toggleSidebar()">Inicio</a>
       <a href="#nosotros" onclick="toggleSidebar()">Purificación</a>
@@ -185,7 +210,7 @@
     </nav>
   </div>
 
-  <!-- Encabezado solo con logo -->
+  <!-- Encabezado -->
   <header id="inicio">
     <img src="https://i.postimg.cc/JnBZH1VH/603295c8-fb11-47bb-8291-bd48be2df78a.jpg" alt="Logo Claravía">
   </header>
@@ -215,11 +240,17 @@
     &copy; 2025 Claravía — Proyecto comunitario desde Boyacá, Colombia
   </footer>
 
-  <!-- Chatbot -->
-  <div class="dialogo" id="dialogo">Hola, soy Clari 🌿 ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</div>
-  <img class="mascota" src="https://i.postimg.cc/3x3QzSGq/mu-eco.png" alt="Mascota Claravía" onclick="hablarClari()">
+  <!-- Chatbot Clari - Oso Polar -->
+  <div class="dialogo" id="dialogo">
+    <p id="mensajeClari">Hola, soy Clari 🐻‍❄️ ¿Tienes dudas sobre Claravía? Haz clic en WhatsApp y te ayudamos.</p>
+    <button class="boton-pausa" onclick="pausarClari()">⏸️ Detener voz</button>
+  </div>
+
+  <img class="mascota" src="https://i.postimg.cc/JzL2c9Hk/oso-polar.png" alt="Clari el Oso Polar" onclick="hablarClari()">
 
   <script>
+    let vozEnCurso = null;
+
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('show');
@@ -227,21 +258,25 @@
 
     function hablarClari() {
       const dialogo = document.getElementById('dialogo');
+      const mensaje = document.getElementById('mensajeClari').textContent;
+
       dialogo.style.display = 'block';
 
-      // Texto personalizable del chatbot
-      const mensaje = "Hola, soy Clari 🌿. Estoy aquí para ayudarte a conocer Claravía. Puedes escribirme por WhatsApp si tienes preguntas.";
-      
-      // Mostrar texto
-      dialogo.textContent = mensaje;
+      // Detiene cualquier voz previa
+      speechSynthesis.cancel();
 
-      // Voz
-      const voz = new SpeechSynthesisUtterance(mensaje);
-      voz.lang = "es-ES";
-      voz.rate = 1;
-      voz.pitch = 1.1;
-      speechSynthesis.speak(voz);
+      // Inicia nueva voz
+      vozEnCurso = new SpeechSynthesisUtterance(mensaje);
+      vozEnCurso.lang = "es-ES";
+      vozEnCurso.rate = 1;
+      vozEnCurso.pitch = 1.1;
+      speechSynthesis.speak(vozEnCurso);
+    }
+
+    function pausarClari() {
+      speechSynthesis.cancel();
     }
   </script>
+
 </body>
 </html>
