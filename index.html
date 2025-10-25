@@ -17,8 +17,9 @@
       background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
       background-repeat: repeat;
       background-attachment: fixed;
-      color: #e0e0e0;
+      color: #f0f0f0;
       line-height: 1.6;
+      text-shadow: 1px 1px 2px #000;
     }
 
     /* === MENÚ LATERAL TIPO CORTINA === */
@@ -42,12 +43,12 @@
 
     .sidebar nav a {
       display: block;
-      color: white;
+      color: #ffffff;
       text-decoration: none;
       margin: 1.2em 0;
       font-weight: bold;
-      font-size: 1em;
-      text-shadow: 1px 1px 2px #000;
+      font-size: 1.1em;
+      text-shadow: 2px 2px 4px #000;
     }
 
     /* === Flecha del menú (sin fondo) === */
@@ -80,28 +81,40 @@
       padding: 3em 1.5em 3em;
       text-align: center;
       margin-bottom: 2em;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000;
     }
 
     header h1 {
-      font-size: 2em;
+      font-size: 2.2em;
       margin-bottom: 1em;
-      color: #ffffff;
-      text-shadow: 2px 2px 4px #000;
     }
 
     header img {
       width: 160px;
       height: 160px;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
 
     section {
       padding: 4em 1.5em;
       margin-bottom: 2em;
       text-align: center;
-      color: white;
-      text-shadow: 1px 1px 2px #000;
+      color: #f0f0f0;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 1em;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    section p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .central {
@@ -125,8 +138,8 @@
       color: white;
       text-align: center;
       padding: 3em 1.5em;
-      font-size: 0.9em;
-      text-shadow: 1px 1px 2px #000;
+      font-size: 0.95em;
+      text-shadow: 2px 2px 4px #000;
     }
 
     /* === Botón WhatsApp solo icono === */
@@ -137,13 +150,14 @@
     }
 
     .whatsapp-icon img {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       transition: transform 0.3s ease;
+      filter: drop-shadow(0 0 5px #00e676);
     }
 
     .whatsapp-icon img:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 
     /* === Chatbot Pingu === */
@@ -173,7 +187,7 @@
       color: white;
       padding: 1em;
       border-radius: 10px;
-      font-size: 0.9em;
+      font-size: 0.95em;
       max-width: 240px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       z-index: 1000;
@@ -203,6 +217,7 @@
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
+
   </style>
 </head>
 <body>
@@ -251,11 +266,6 @@
     <a href="https://wa.me/573001112233" class="whatsapp-icon" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
-
-    <!-- QR opcional -->
-    <div style="margin-top:1em;">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://damian666ahr-creator.github.io/Claravia2025/&size=120x120" alt="QR Claravía">
-    </div>
   </section>
 
   <footer id="contacto">
